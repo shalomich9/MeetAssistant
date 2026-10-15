@@ -1,0 +1,77 @@
+# MeetAssistant 🎓
+
+**Your AI helper for Google Meet.**  
+Works with Russian and Ukrainian subtitles.
+
+MeetAssistant helps you get quick AI-generated answers during school meetings. It reads the meeting subtitles and uses AI to understand the context and suggest relevant answers.
+
+Less stress, more confidence. 😉
+
+## 🚀 Installation
+
+1. **Download** this extension and extract the ZIP archive into a folder.
+2. Open Chrome and go to `chrome://extensions`.
+3. Turn on **Developer mode** in the top-right corner.
+4. Click **Load unpacked** in the top-left corner.
+5. Select the folder where you extracted MeetAssistant.
+6. Make sure the extension is enabled.
+
+That's it! The extension is installed.
+
+## 🔑 Get your free Groq API key
+
+MeetAssistant uses Groq to generate AI answers.
+
+1. Go to [console.groq.com](https://console.groq.com/).
+2. Sign in or create an account.
+3. Open the **API Keys** section.
+4. Create a new API key and copy it.
+5. Open MeetAssistant's settings and paste your API key into the appropriate field.
+6. Save your settings.
+
+**Important:** Keep your API key private. Don't share it or upload it to GitHub.
+
+Groq's free-tier availability and usage limits may vary.
+
+## 🎤 How to use it
+
+1. Join a Google Meet meeting in Chrome.
+2. **Turn on captions** using the captions button in Google Meet.
+3. Make sure the meeting subtitles are in Russian or Ukrainian.
+4. Open MeetAssistant and let it read the subtitles.
+5. When someone asks a question, MeetAssistant uses the conversation context to generate a suggested answer.
+
+That's all! No complicated setup, no local AI models, and no need for a powerful computer.
+
+## 🛠️ Troubleshooting
+
+**The assistant doesn't answer**
+- Make sure captions are turned on.
+- Check that your Groq API key is correct.
+- Make sure your selected AI model is available to your Groq account.
+- Check your internet connection.
+
+**The assistant says there isn't enough context**
+- Wait until more subtitles appear.
+- Make sure the meeting has enough conversation history for the AI to understand the question.
+
+**The extension doesn't appear**
+- Open `chrome://extensions`.
+- Make sure MeetAssistant is enabled.
+- If you changed its files, click the reload icon on the extension card.
+
+## 🔒 Privacy
+
+MeetAssistant reads visible Google Meet subtitles to understand the conversation. The text sent to Groq may contain parts of the meeting conversation.
+
+Don't use it to process confidential conversations without permission. Follow your school's rules and respect other participants' privacy.
+
+Your Groq API key should remain private.
+
+## 💡 Made for students
+
+MeetAssistant is an experimental project designed to make online learning easier.
+
+**Learn smarter, not harder.**
+
+*Note: AI-generated answers can be wrong. Always use your own judgment and verify important information.*
