@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MeetAssistant - Settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="options-wrapper">
+    <!-- Header -->
+    <header class="options-header">
+      <div class="header-left">
+        <div class="header-logo">M</div>
+        <div>
+          <h1>MeetAssistant Settings</h1>
+          <p class="subtitle">Configure your free Groq API key, model, and caption detection rules</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a href="test_sandbox.html" class="btn btn-outline" target="_blank">🧪 Open Test Sandbox</a>
+      </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="options-main">
+      <!-- Status Feedback Banner -->
+      <div id="statusAlert" class="alert hidden"></div>
+
+      <!-- Section: Groq API Key -->
+      <section class="card">
+        <div class="card-header">
+          <h2>1. Groq API Configuration</h2>
+          <span class="badge badge-free">Free Tier Friendly</span>
+        </div>
+        <p class="card-desc">
+          MeetAssistant queries the official Groq Chat Completions API. You need a free Groq API key to use this extension.
+        </p>
+
+        <div class="form-group">
+          <label for="groqApiKey" class="form-label">Groq API Key</label>
+          <div class="input-with-button">
+            <input type="password" id="groqApiKey" class="form-control" placeholder="gsk_..." autocomplete="off" spellcheck="false">
+            <button type="button" id="toggleKeyVisibility" class="btn btn-secondary btn-icon" title="Toggle visibility">👁</button>
+            <button type="button" id="testApiKeyBtn" class="btn btn-secondary">⚡ Test Key</button>
+          </div>
+          <span class="form-hint" id="keyTestResult"></span>
+        </div>
+
+        <div class="info-callout">
+          <strong>How to get your free key:</strong>
+          <ol>
+            <li>Go to <a href="https://console.groq.com/keys" target="_blank" rel="noopener">console.groq.com/keys</a> and log in or create a free account.</li>
+            <li>Click <strong>Create API Key</strong> and copy your key.</li>
+            <li>Paste your key above and click <strong>Test Key</strong>.</li>
+          </ol>
+          <p class="privacy-note">
+            🔒 <em>Security notice:</em> Your key is stored solely on your machine using Chrome's local storage API (<code>chrome.storage.local</code>). It is never sent to any third-party server, tracking service, or intermediary. Local browser storage is not an encrypted hardware enclave; do not install this extension on untrusted shared machines.
+          </p>
+        </div>
+      </section>
+
+      <!-- Section: Model Selection -->
+      <section class="card">
+        <div class="card-header">
+          <h2>2. Model &amp; Language</h2>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="groqModel" class="form-label">Groq Model</label>
+            <select id="groqModel" class="form-control">
+              <option value="llama-3.3-70b-versatile">llama-3.3-70b-versatile (Recommended - Best Ukrainian &amp; Russian reasoning)</option>
+              <option value="llama-3.1-8b-instant">llama-3.1-8b-instant (Ultra-fast, lowest latency)</option>
+              <option value="custom">Custom Model ID...</option>
+            </select>
+            <span class="form-hint">Both models are available on Groq's free tier.</span>
+          </div>
+
+          <div class="form-group hidden" id="customModelGroup">
+            <label for="customModelInput" class="form-label">Custom Model Identifier</label>
+            <input type="text" id="customModelInput" class="form-control" placeholder="e.g. llama3-70b-8192">
+          </div>
+
+          <div class="form-group">
+            <label for="responseLanguage" class="form-label">Response Language</label>
+            <select id="responseLanguage" class="form-control">
+              <option value="auto">Auto-detect (Answer in language of question - UA or RU)</option>
+              <option value="uk">Always Ukrainian (Українська)</option>
+              <option value="ru">Always Russian (Русский)</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Question Detection & Automation -->
+      <section class="card">
+        <div class="card-header">
+          <h2>3. Question Detection &amp; Throttling</h2>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Question Detection Mode</label>
+          <div class="radio-group">
+            <label class="radio-label">
+              <input type="radio" name="detectionMode" value="all" checked>
+              <div class="radio-text">
+                <strong>All Questions (Recommended)</strong>
+                <span>Detects both explicit questions with '?' and conversational questions starting with interrogatives (Ukrainian/Russian: хто, що, коли, де, чому, як, чи, підкажіть...).</span>
+              </div>
+            </label>
+
+            <label class="radio-label">
+              <input type="radio" name="detectionMode" value="direct">
+              <div class="radio-text">
+                <strong>Direct Questions Only</strong>
+                <span>Triggers only on sentences explicitly containing a question mark (?).</span>
+              </div>
+            </label>
+
+            <label class="radio-label">
+              <input type="radio" name="detectionMode" value="manual">
+              <div class="radio-text">
+                <strong>Manual Only</strong>
+                <span>Never triggers automatically. Only generates an answer when you click the ⚡ <em>Ask AI</em> button in the floating panel.</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-check-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="autoAnswerEnabled" checked>
+            <span>Enable automatic answering for detected questions</span>
+          </label>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="minIntervalSeconds" class="form-label">Minimum Interval Between Requests (seconds)</label>
+            <input type="number" id="minIntervalSeconds" class="form-control" min="5" max="60" value="12">
+            <span class="form-hint">Prevents hitting Groq free tier rate limits (HTTP 429) during rapid speech.</span>
+          </div>
+
+          <div class="form-group">
+            <label for="maxContextLength" class="form-label">Maximum Meeting Context Length (characters)</label>
+            <input type="number" id="maxContextLength" class="form-control" min="500" max="10000" step="250" value="5000">
+            <span class="form-hint">Rolling context sent with the question (allows 20-40 dialogue turns).</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Storage & Reset -->
+      <section class="card">
+        <div class="card-header">
+          <h2>4. Storage &amp; Privacy</h2>
+        </div>
+        <p class="card-desc">
+          MeetAssistant preserves zero server logs. Full meeting transcripts are never stored permanently; only a small rolling buffer is held in memory during the call.
+        </p>
+        <div class="btn-group">
+          <button type="button" id="resetDefaultsBtn" class="btn btn-secondary">Restore Default Settings</button>
+          <button type="button" id="clearAllBtn" class="btn btn-danger">Clear All Local Data &amp; Key</button>
+        </div>
+      </section>
+
+      <!-- Save Bar -->
+      <div class="save-bar">
+        <div class="save-status" id="saveStatus"></div>
+        <button type="button" id="saveSettingsBtn" class="btn btn-primary btn-lg">💾 Save Settings</button>
+      </div>
+    </main>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

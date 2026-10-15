@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MeetAssistant</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <header class="popup-header">
+      <div class="header-brand">
+        <div class="brand-icon">M</div>
+        <div>
+          <h1 class="brand-title">MeetAssistant</h1>
+          <span class="brand-subtitle">AI Meeting Copilot</span>
+        </div>
+      </div>
+      <div class="header-status-pill status-idle" id="popupStatusBadge">
+        <span class="status-dot"></span>
+        <span id="popupStatusText">Checking...</span>
+      </div>
+    </header>
+
+    <!-- Not on Meet Alert -->
+    <div class="meet-notice hidden" id="meetNotice">
+      <div class="notice-icon">ℹ️</div>
+      <div class="notice-content">
+        <div class="notice-title">Not in Google Meet</div>
+        <div class="notice-desc">Open a Google Meet call or launch the Test Sandbox to test features.</div>
+        <div class="notice-actions">
+          <a href="https://meet.google.com" target="_blank" class="btn btn-sm btn-outline">Open Meet</a>
+          <button id="openSandboxBtn" class="btn btn-sm btn-primary">Open Sandbox</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active Meet Controls -->
+    <div class="controls-section" id="meetControls">
+      <!-- Main Toggle Switch -->
+      <div class="control-row toggle-row">
+        <div class="control-info">
+          <span class="control-label">Listening Status</span>
+          <span class="control-desc" id="statusDesc">Active and monitoring captions</span>
+        </div>
+        <button id="togglePauseBtn" class="btn btn-secondary">
+          <span id="pauseBtnIcon">⏸</span> <span id="pauseBtnLabel">Pause</span>
+        </button>
+      </div>
+
+      <!-- Detection Mode -->
+      <div class="control-row">
+        <div class="control-info">
+          <label for="detectionModeSelect" class="control-label">Question Mode</label>
+          <span class="control-desc">How questions are identified</span>
+        </div>
+        <select id="detectionModeSelect" class="select-input">
+          <option value="all">All Questions (Auto + ?)</option>
+          <option value="direct">Direct Only (?)</option>
+          <option value="manual">Manual Only</option>
+        </select>
+      </div>
+
+      <!-- Quick Action Buttons -->
+      <div class="actions-grid">
+        <button id="showPanelBtn" class="btn btn-outline">
+          🗂 Focus Panel
+        </button>
+        <button id="manualAskBtn" class="btn btn-primary">
+          ⚡ Ask AI Now
+        </button>
+      </div>
+    </div>
+
+    <!-- Quick Help & Troubleshooting Accordion -->
+    <div class="troubleshoot-box">
+      <details>
+        <summary class="troubleshoot-header">
+          <span>Troubleshooting Tips</span>
+          <span class="arrow">▾</span>
+        </summary>
+        <div class="troubleshoot-content">
+          <ul>
+            <li><strong>No captions?</strong> Press <kbd>c</kbd> in Google Meet or click the <em>Turn on captions</em> button.</li>
+            <li><strong>Ukrainian / Russian?</strong> Click Meet's <em>Settings &gt; Captions</em> to choose your spoken language.</li>
+            <li><strong>No AI response?</strong> Ensure your free Groq API key is configured in Settings.</li>
+            <li><strong>HTTP 429 error?</strong> Free tier rate limit hit. Wait 10-15 seconds.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+
+    <!-- Footer Links -->
+    <footer class="popup-footer">
+      <button id="openOptionsBtn" class="footer-btn">
+        <span>⚙️</span> Options &amp; API Key
+      </button>
+      <button id="footerSandboxBtn" class="footer-btn">
+        <span>🧪</span> Test Sandbox
+      </button>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

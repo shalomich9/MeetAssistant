@@ -1,0 +1,58 @@
+{
+  "manifest_version": 3,
+  "name": "MeetAssistant - AI Meeting Copilot",
+  "version": "1.0.0",
+  "description": "Reads visible Google Meet captions in Ukrainian or Russian, detects questions, and displays instant AI-generated answers.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "MeetAssistant",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://meet.google.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "https://meet.google.com/*",
+    "https://api.groq.com/*"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "floating-panel.css",
+        "icons/icon16.png",
+        "icons/icon48.png"
+      ],
+      "matches": [
+        "https://meet.google.com/*"
+      ]
+    }
+  ]
+}

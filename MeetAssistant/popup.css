@@ -1,0 +1,333 @@
+/* MeetAssistant - Popup Styles */
+
+:root {
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --accent-cyan: #06b6d4;
+  --accent-blue: #0284c7;
+  --accent-emerald: #10b981;
+  --accent-purple: #c084fc;
+  --accent-red: #ef4444;
+  --border-color: rgba(255, 255, 255, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 330px;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+  line-height: 1.4;
+  overflow: hidden;
+  user-select: none;
+}
+
+.popup-container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.popup-header {
+  padding: 12px 14px;
+  background-color: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-emerald));
+  color: #0f172a;
+  font-weight: 800;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-title {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.brand-subtitle {
+  font-size: 10.5px;
+  color: var(--text-muted);
+  display: block;
+  margin-top: -2px;
+}
+
+/* Status Pill */
+.header-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-color);
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--text-muted);
+}
+
+.header-status-pill.status-listening {
+  color: var(--accent-cyan);
+  background: rgba(6, 182, 212, 0.12);
+  border-color: rgba(6, 182, 212, 0.25);
+}
+.header-status-pill.status-listening .status-dot {
+  background: var(--accent-cyan);
+  box-shadow: 0 0 6px var(--accent-cyan);
+}
+
+.header-status-pill.status-paused {
+  color: #fbbf24;
+  background: rgba(245, 158, 11, 0.12);
+  border-color: rgba(245, 158, 11, 0.25);
+}
+.header-status-pill.status-paused .status-dot {
+  background: #fbbf24;
+}
+
+.header-status-pill.status-notmeet {
+  color: var(--text-secondary);
+}
+
+/* Not on Meet Notice */
+.meet-notice {
+  padding: 12px 14px;
+  background: rgba(30, 41, 59, 0.6);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  gap: 10px;
+}
+
+.meet-notice.hidden {
+  display: none;
+}
+
+.notice-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.notice-title {
+  font-weight: 600;
+  font-size: 12px;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.notice-desc {
+  font-size: 11px;
+  color: var(--text-secondary);
+  line-height: 1.35;
+  margin-bottom: 8px;
+}
+
+.notice-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* Controls */
+.controls-section {
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.control-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.control-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.control-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.control-desc {
+  font-size: 10.5px;
+  color: var(--text-secondary);
+}
+
+.select-input {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  padding: 5px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  outline: none;
+  cursor: pointer;
+}
+
+.select-input:focus {
+  border-color: var(--accent-cyan);
+}
+
+.actions-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+/* Buttons */
+.btn {
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 10px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.15s ease;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--accent-blue);
+  color: #fff;
+}
+.btn-primary:hover {
+  background: #0369a1;
+}
+
+.btn-secondary {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+.btn-secondary:hover {
+  background: var(--bg-tertiary);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+}
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-primary);
+}
+
+.btn-sm {
+  padding: 4px 8px;
+  font-size: 11px;
+}
+
+/* Troubleshooting Accordion */
+.troubleshoot-box {
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  background: rgba(30, 41, 59, 0.3);
+}
+
+.troubleshoot-header {
+  padding: 8px 14px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+}
+
+.troubleshoot-header::-webkit-details-marker {
+  display: none;
+}
+
+.troubleshoot-content {
+  padding: 0 14px 10px;
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.troubleshoot-content ul {
+  padding-left: 16px;
+}
+
+.troubleshoot-content li {
+  margin-bottom: 5px;
+}
+
+.troubleshoot-content kbd {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 3px;
+  padding: 1px 4px;
+  font-size: 10px;
+  color: var(--accent-cyan);
+}
+
+/* Footer */
+.popup-footer {
+  padding: 8px 14px;
+  background-color: var(--bg-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 11px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 4px;
+  transition: color 0.15s;
+}
+
+.footer-btn:hover {
+  color: var(--text-primary);
+}
